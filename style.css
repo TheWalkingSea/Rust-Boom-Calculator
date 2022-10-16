@@ -1,0 +1,100 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.inp .resource img{
+    width: 40px;
+}
+.inp {
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 80vh;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.resource, .boomsel div {
+    display: flex;
+    align-items: center;
+}
+
+input {
+    margin-left: 10px;
+    height: 70%;
+    border-radius: 5px;
+}
+
+/* ----------- SECOND COLUMN ----------- */
+.boomsel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.boomsel div img {
+    width: 50px;
+}
+.boomsel div {
+    margin: 20px 0;
+}
+
+.boomsel .disableautoboom {
+    font-size: 1.3em;
+    border-radius: 10px;
+}
+
+/* ----------- THIRD COLUMN ------------ */
+
+.outputs .resource p {
+    font-size: 1.1em;
+    margin-left: 5px;
+    position: relative;
+    
+}
+
+/* .outputs .resource p::before {
+    content: 'aaaa';
+    width: auto;
+    position: absolute;
+    bottom: 1em;
+    background-color: rgb(168, 161, 161);
+
+} */
+
+.toolitip--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.toolitip--container p:not(.toolitip) {
+    padding: 0;
+    margin: 0;
+    
+}
+.toolitip--container:last-child {
+    position: relative;
+    bottom: 25%;
+}
+
+
+.toolitip {
+    margin-bottom: 5px;
+    background-color: rgba(155, 143, 143, 0.527);
+    border-radius: 5px;
+    padding: 5px 0px 5px 3px;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity .5s ease-in-out .2s;
+}
+
+.toolitip:hover {
+    opacity: 1;
+}
+
