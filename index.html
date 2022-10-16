@@ -9,141 +9,139 @@
     <link rel="shortcut icon" type="image/x-icon" href="./images/logo.png" />
 </head>
 <body>
-    <main>
-        <section class="inp inputs">
-            <div class="resource">
-                <img src="./images/gunpowder.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="gunpowder">
+    <section class="inp inputs">
+        <div class="resource">
+            <img src="./images/gunpowder.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="gunpowder">
+        </div>
+        <div class="resource">
+            <img src="./images/sulfur.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="sulfur">
+        </div>
+        <div class="resource">
+            <img src="./images/sulfur_ore.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="sulfurore">
+        </div>
+        <div class="resource">
+            <img src="./images/frags.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="metalfrags">
+        </div>
+        <div class="resource">
+            <img src="./images/pipe.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="pipe">
+        </div>
+        <div class="resource">
+            <img src="./images/explosive.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="explosive">
+        </div>
+        <div class="resource">
+            <img src="./images/tech_trash.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="techtrash">
+        </div>
+        <div class="resource">
+            <img src="./images/charcoal.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="charcoal">
+        </div>
+        <div class="resource">
+            <img src="./images/cloth.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="cloth">
+        </div>
+        <div class="resource">
+            <img src="./images/lowgrade.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="lowgrade">
+        </div>
+    </section>
+    <section class="boomsel">
+        <nav class="navbar">
+            <img src="./images/logo.png" alt="" srcset="">
+            <h1>Rust Boom Calculator</h1>
+        </nav>
+        <button class="disableautoboom" id="disable">
+            Disable autocraft
+        </button>
+        <div>
+            <img src="./images/rocket.webp" alt="">
+            <input type="number" min="0" placeholder="Enter Amount" name="rocket" value="0">
+        </div>
+        <div>
+            <img src="./images/c4.webp" alt="">
+            <input type="number" min="0" placeholder="Enter Amount" name="c4" value="0">
+        </div>
+        <div>
+            <img src="./images/explo.webp" alt="">
+            <input type="number" min="0" placeholder="Enter Amount" name="explo" value="0">
+    </section>
+    <section class="totalcost inp outputs">
+        <div class="resource">
+            <img src="./images/gunpowder.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Explosives</p>
+                <p><span id="gunpowder" class="totalamt">0</span> gunpowder</p>
             </div>
-            <div class="resource">
-                <img src="./images/sulfur.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="sulfur">
+        </div>
+        <div class="resource">
+            <img src="./images/sulfur.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Gunpowder<br><span>0</span> => Explosives</p>
+                <p><span id="sulfur" class="totalamt">0</span> sulfur</p>
             </div>
-            <div class="resource">
-                <img src="./images/sulfur_ore.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="sulfurore">
+        </div>
+        <div class="resource">
+            <img src="./images/sulfur_ore.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Sulfur</p>
+                <p><span id="sulfurore" class="totalamt">0</span> sulfur ore</p>
             </div>
-            <div class="resource">
-                <img src="./images/frags.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="metalfrags">
+        </div>
+        <div class="resource">
+            <img src="./images/frags.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Explosives</p>
+                <p><span id="metalfrags" class="totalamt">0</span> frags</p>
             </div>
-            <div class="resource">
-                <img src="./images/pipe.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="pipe">
+        </div>
+        <div class="resource">
+            <img src="./images/pipe.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Rockets</p>
+                <p><span id="pipe" class="totalamt">0</span> pipes</p>
             </div>
-            <div class="resource">
-                <img src="./images/explosive.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="explosive">
+        </div>
+        <div class="resource">
+            <img src="./images/explosive.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Rockets<br><span>0</span> => C4</p>
+                <p><span id="explosive" class="totalamt">0</span> explosives</p>
             </div>
-            <div class="resource">
-                <img src="./images/tech_trash.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="techtrash">
+        </div>
+        <div class="resource">
+            <img src="./images/tech_trash.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => C4</p>
+                <p><span id="techtrash" class="totalamt">0</span> tech trash</p>
             </div>
-            <div class="resource">
-                <img src="./images/charcoal.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="charcoal">
+        </div>
+        <div class="resource">
+            <img src="./images/charcoal.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Gunpowder</p>
+                <p><span id="charcoal" class="totalamt">0</span> charcoal</p>
+        </div>
+        </div>
+        <div class="resource">
+            <img src="./images/cloth.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => C4</p>
+                <p><span id="cloth" class="totalamt">0</span> cloth</p>
             </div>
-            <div class="resource">
-                <img src="./images/cloth.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="cloth">
+        </div>
+        <div class="resource">
+            <img src="./images/lowgrade.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Explosive</p>
+                <p><span id="lowgrade" class="totalamt">0</span> low grade</p>
             </div>
-            <div class="resource">
-                <img src="./images/lowgrade.webp" alt="resource">
-                <input type="number" min="0" placeholder="Enter Amount" value="0" name="lowgrade">
-            </div>
-        </section>
-        <section class="boomsel">
-            <nav class="navbar">
-                <img src="./images/logo.png" alt="" srcset="">
-                <h1>Rust Boom Calculator</h1>
-            </nav>
-            <button class="disableautoboom" id="disable">
-                Disable autocraft
-            </button>
-            <div>
-                <img src="./images/rocket.webp" alt="">
-                <input type="number" min="0" placeholder="Enter Amount" name="rocket" value="0">
-            </div>
-            <div>
-                <img src="./images/c4.webp" alt="">
-                <input type="number" min="0" placeholder="Enter Amount" name="c4" value="0">
-            </div>
-            <div>
-                <img src="./images/explo.webp" alt="">
-                <input type="number" min="0" placeholder="Enter Amount" name="explo" value="0">
-        </section>
-        <section class="totalcost inp outputs">
-            <div class="resource">
-                <img src="./images/gunpowder.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => Explosives</p>
-                    <p><span id="gunpowder" class="totalamt">0</span> gunpowder</p>
-                </div>
-            </div>
-            <div class="resource">
-                <img src="./images/sulfur.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => Gunpowder<br><span>0</span> => Explosives</p>
-                    <p><span id="sulfur" class="totalamt">0</span> sulfur</p>
-                </div>
-            </div>
-            <div class="resource">
-                <img src="./images/sulfur_ore.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => Sulfur</p>
-                    <p><span id="sulfurore" class="totalamt">0</span> sulfur ore</p>
-                </div>
-            </div>
-            <div class="resource">
-                <img src="./images/frags.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => Explosives</p>
-                    <p><span id="metalfrags" class="totalamt">0</span> frags</p>
-                </div>
-            </div>
-            <div class="resource">
-                <img src="./images/pipe.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => Rockets</p>
-                    <p><span id="pipe" class="totalamt">0</span> pipes</p>
-                </div>
-            </div>
-            <div class="resource">
-                <img src="./images/explosive.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => Rockets<br><span>0</span> => C4</p>
-                    <p><span id="explosive" class="totalamt">0</span> explosives</p>
-                </div>
-            </div>
-            <div class="resource">
-                <img src="./images/tech_trash.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => C4</p>
-                    <p><span id="techtrash" class="totalamt">0</span> tech trash</p>
-                </div>
-            </div>
-            <div class="resource">
-                <img src="./images/charcoal.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => Gunpowder</p>
-                    <p><span id="charcoal" class="totalamt">0</span> charcoal</p>
-            </div>
-            </div>
-            <div class="resource">
-                <img src="./images/cloth.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => C4</p>
-                    <p><span id="cloth" class="totalamt">0</span> cloth</p>
-                </div>
-            </div>
-            <div class="resource">
-                <img src="./images/lowgrade.webp" alt="resource">
-                <div class="toolitip--container">
-                    <p class="toolitip"><span>0</span> => Explosive</p>
-                    <p><span id="lowgrade" class="totalamt">0</span> low grade</p>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 </body>
 </html>

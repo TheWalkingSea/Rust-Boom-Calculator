@@ -2,12 +2,6 @@ body {
     box-sizing: content-box;
     padding: 0;
     margin: 0;
-}
-
-main {
-    box-sizing: content-box;
-    padding: 0;
-    margin: 0;
     background-color: aliceblue;
     display: flex;
     justify-content: space-evenly;
