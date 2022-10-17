@@ -12,7 +12,7 @@
     <section class="inp inputs">
         <div class="resource">
             <img src="./images/gunpowder.webp" alt="resource">
-            <input type="number" min="0" placeholder="Enter Amount" value="0" name="gunpowder">
+            <input type="number" min="0" placeholder="Enter Amount" value="300" name="gunpowder">
         </div>
         <div class="resource">
             <img src="./images/sulfur.webp" alt="resource">
@@ -28,11 +28,11 @@
         </div>
         <div class="resource">
             <img src="./images/pipe.webp" alt="resource">
-            <input type="number" min="0" placeholder="Enter Amount" value="0" name="pipe">
+            <input type="number" min="0" placeholder="Enter Amount" value="4" name="pipe">
         </div>
         <div class="resource">
             <img src="./images/explosive.webp" alt="resource">
-            <input type="number" min="0" placeholder="Enter Amount" value="0" name="explosive">
+            <input type="number" min="0" placeholder="Enter Amount" value="20" name="explosive">
         </div>
         <div class="resource">
             <img src="./images/tech_trash.webp" alt="resource">
@@ -50,13 +50,17 @@
             <img src="./images/lowgrade.webp" alt="resource">
             <input type="number" min="0" placeholder="Enter Amount" value="0" name="lowgrade">
         </div>
+        <div class="resource">
+            <img src="./images/rope.webp" alt="resource">
+            <input type="number" min="0" placeholder="Enter Amount" value="0" name="rope">
+        </div>
     </section>
     <section class="boomsel">
         <nav class="navbar">
             <img src="./images/logo.png" alt="" srcset="">
             <h1>Rust Boom Calculator</h1>
         </nav>
-        <button class="disableautoboom enabled" id="disable">
+        <button class="disableautoboom enabled" id="dis">
             Disable autocraft
         </button>
         <div>
@@ -70,12 +74,17 @@
         <div>
             <img src="./images/explo.webp" alt="">
             <input type="number" min="0" placeholder="Enter Amount" name="explo" value="0">
+        </div>
+        <div>
+            <img src="./images/satchal.png" alt="">
+            <input type="number" min="0" placeholder="Enter Amount" name="satchel" value="0">
+        </div>
     </section>
     <section class="totalcost inp outputs">
         <div class="resource">
             <img src="./images/gunpowder.webp" alt="resource">
             <div class="toolitip--container">
-                <p class="toolitip"><span>0</span> => Explosives</p>
+                <p class="toolitip"><span>0</span> => Explosives<br><span>0</span> => Beancan => Satchel</p>
                 <p><span id="gunpowder" class="totalamt">0</span> gunpowder</p>
             </div>
         </div>
@@ -96,7 +105,7 @@
         <div class="resource">
             <img src="./images/frags.webp" alt="resource">
             <div class="toolitip--container">
-                <p class="toolitip"><span>0</span> => Explosives</p>
+                <p class="toolitip"><span>0</span> => Explosives<br><span>0</span> => Beancan => Satchel</p>
                 <p><span id="metalfrags" class="totalamt">0</span> frags</p>
             </div>
         </div>
@@ -131,7 +140,7 @@
         <div class="resource">
             <img src="./images/cloth.webp" alt="resource">
             <div class="toolitip--container">
-                <p class="toolitip"><span>0</span> => C4</p>
+                <p class="toolitip"><span>0</span> => C4<br><span>0</span> => Stash => Satchel</p>
                 <p><span id="cloth" class="totalamt">0</span> cloth</p>
             </div>
         </div>
@@ -140,6 +149,13 @@
             <div class="toolitip--container">
                 <p class="toolitip"><span>0</span> => Explosive</p>
                 <p><span id="lowgrade" class="totalamt">0</span> low grade</p>
+            </div>
+        </div>
+        <div class="resource">
+            <img src="./images/rope.webp" alt="resource">
+            <div class="toolitip--container">
+                <p class="toolitip"><span>0</span> => Satchel</p>
+                <p><span id="rope" class="totalamt">0</span> rope</p>
             </div>
         </div>
     </section>

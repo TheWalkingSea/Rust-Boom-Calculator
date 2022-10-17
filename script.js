@@ -22,6 +22,13 @@ const explo = {
     "sulfur": 10,
     "elem": document.getElementsByName("explo")[0]
 }
+const satchel = {
+    "rope": 1,
+    "cloth": 10,
+    "gunpowder": 240,
+    "metalfrags": 80,
+    "elem": document.getElementsByName("satchel")[0]
+}
 
 let autoboom = true; // toggle switch on screen
 
@@ -29,14 +36,22 @@ function setOutput(resource, totalcost) {
     outp.forEach((elem) => {
         elem.innerHTML = totalcost[elem.id] ? resource[elem.id] - totalcost[elem.id]: resource[elem.id];
     })
-    let explosive = parseInt(outp[5].innerHTML)
+    
     // Add toolitips
     outpcontainer[5].firstElementChild.lastElementChild.innerHTML = parseInt(c4.elem.value)*20; // Explosives
-    outpcontainer[6].firstElementChild.lastElementChild.innerHTML = parseInt(c4.elem.value)*2; // Tech Trash
-    outpcontainer[8].firstElementChild.lastElementChild.innerHTML = parseInt(c4.elem.value)*5; // Cloth
+    outpcontainer[6].firstElementChild.firstElementChild.innerHTML = parseInt(c4.elem.value)*2; // Tech Trash
+    outpcontainer[8].firstElementChild.firstElementChild.innerHTML = parseInt(c4.elem.value)*5; // Cloth
     outpcontainer[5].firstElementChild.firstElementChild.innerHTML = parseInt(rocket.elem.value)*10; // Explosives
     outpcontainer[4].firstElementChild.firstElementChild.innerHTML = parseInt(rocket.elem.value)*2; //Pipes
-
+    if (parseInt(satchel.elem.value) > 0) {
+        // console.log("eeee")
+        outpcontainer[0].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*60*4;
+        outpcontainer[3].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*20*4;
+        outpcontainer[8].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*10;
+        outpcontainer[10].firstElementChild.firstElementChild.innerHTML = parseInt(satchel.elem.value)*1;
+    }
+    
+    let explosive = parseInt(outp[5].innerHTML)
     if (explosive < 0) { // Breaks down Explosives
         outp[0].innerHTML = parseInt(outp[0].innerHTML) + 50*explosive; // Gunpowder
         outp[9].innerHTML = parseInt(outp[9].innerHTML) + 3*explosive; // Low Grade
@@ -51,7 +66,7 @@ function setOutput(resource, totalcost) {
     const elements = [...outp].map((e)=>(parseInt(e.innerHTML))) // Converts element => inner html => number
     if (elements[0] < 0) { // Sulfur => sulfure ore + charcoal
         let material = -elements[0]*2; // calc sulf and charcoal needed respectively
-        console.log(material)
+        // console.log(material)
         // outp[0].innerHTML = 0; // Reset since we are editing other values to make up for gunpowder
         // Makes the conversions
         outp[7].innerHTML = material;
@@ -72,6 +87,7 @@ function estimateRockets(resources, totalcost) {
         for (let obj in totalcost) {
             if (resources[obj]) {
                 if (!((resources[obj] - totalcost[obj]) >= 0)) {
+                    console.log(rockets)
                     totalcost["pipe"] -= 2; // Sets back a rocket
                     totalcost["explosive"] -= 10; // Sets back a rocket
                     totalcost["gunpowder"] -= 150; // Sets back a rocket
@@ -121,6 +137,18 @@ function getboom(autocompleterockets=false) {
             }
         }
     }
+    if (satchel.elem.value !== "0") {
+        for (const item in satchel) {
+            if (typeof(satchel[item]) === "number") {
+                if (totalcost[item]) {
+                    totalcost[item] += satchel[item]*parseInt(satchel.elem.value);
+                } else {
+                    totalcost[item] = satchel[item]*parseInt(satchel.elem.value);
+                }
+                
+            }
+        }
+    }
     let newcost = totalcost;
     let a;
     if (autoboom) {
@@ -159,11 +187,11 @@ for (let boom of document.querySelectorAll(".boomsel div input")) {
         getboom()
     })
 }
-const dis = document.getElementById("disable");
+const dis = document.getElementById("dis");
 dis.addEventListener("click", () => {
     autoboom = !autoboom
     dis.innerHTML = autoboom ?  "Disable autocraft " : "Enable autocraft"
     dis.classList.add(autoboom ? "enabled" : "disabled")
     dis.classList.remove(autoboom ? "disabled" : "enabled");
-    autoboom ? getboom():"";
+    getboom();
 });

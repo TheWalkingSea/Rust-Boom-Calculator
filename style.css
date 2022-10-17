@@ -20,7 +20,7 @@ body {
     top: 20px;
 }
 .navbar img {
-    width: 50%;
+    width: 40%;
     background-position: center;
     background-size: cover;
 }
@@ -49,6 +49,8 @@ input {
     border-radius: 5px;
 }
 
+
+
 /* ----------- SECOND COLUMN ----------- */
 .boomsel {
     display: flex;
@@ -57,6 +59,8 @@ input {
     align-items: center;
 }
 .boomsel button {
+    z-index: 1;
+    cursor: pointer;
     padding: 10px;
 }
 .boomsel div img {
