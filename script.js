@@ -163,5 +163,7 @@ const dis = document.getElementById("disable");
 dis.addEventListener("click", () => {
     autoboom = !autoboom
     dis.innerHTML = autoboom ?  "Disable autocraft " : "Enable autocraft"
+    dis.classList.add(autoboom ? "enabled" : "disabled")
+    dis.classList.remove(autoboom ? "disabled" : "enabled");
     autoboom ? getboom():"";
 });
