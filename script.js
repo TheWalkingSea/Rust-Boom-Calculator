@@ -43,56 +43,55 @@ function setOutput(resource, totalcost) {
     outpcontainer[8].firstElementChild.firstElementChild.innerHTML = parseInt(c4.elem.value)*5; // Cloth
     outpcontainer[5].firstElementChild.firstElementChild.innerHTML = parseInt(rocket.elem.value)*10; // Explosives
     outpcontainer[4].firstElementChild.firstElementChild.innerHTML = parseInt(rocket.elem.value)*2; //Pipes
-    if (parseInt(satchel.elem.value) > 0) {
-        // console.log("eeee")
-        outpcontainer[0].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*60*4;
-        outpcontainer[3].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*20*4;
-        outpcontainer[8].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*10;
-        outpcontainer[10].firstElementChild.firstElementChild.innerHTML = parseInt(satchel.elem.value)*1;
-    }
+
+
+    // Satchels
+    outpcontainer[0].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*60*4;
+    outpcontainer[3].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*20*4;
+    outpcontainer[8].firstElementChild.lastElementChild.innerHTML = parseInt(satchel.elem.value)*10;
+    outpcontainer[10].firstElementChild.firstElementChild.innerHTML = parseInt(satchel.elem.value)*1;
     
     let explosive = parseInt(outp[5].innerHTML)
-    if (explosive < 0) { // Breaks down Explosives
-        outp[0].innerHTML = parseInt(outp[0].innerHTML) + 50*explosive; // Gunpowder
-        outp[9].innerHTML = parseInt(outp[9].innerHTML) + 3*explosive; // Low Grade
-        outp[1].innerHTML = parseInt(outp[1].innerHTML) + 10*explosive; // Sulfur
-        outp[3].innerHTML = parseInt(outp[3].innerHTML) + 10*explosive; // Frags
-        outpcontainer[0].firstElementChild.firstElementChild.innerHTML = -explosive*50;
-        outpcontainer[9].firstElementChild.firstElementChild.innerHTML = -explosive*3;
-        outpcontainer[1].firstElementChild.firstElementChild.innerHTML = -explosive*10;
-        outpcontainer[3].firstElementChild.firstElementChild.innerHTML = -explosive*10;
-        
-    }
+    outp[0].innerHTML = parseInt(outp[0].innerHTML) + 50*explosive; // Gunpowder
+    outp[9].innerHTML = parseInt(outp[9].innerHTML) + 3*explosive; // Low Grade
+    outp[1].innerHTML = parseInt(outp[1].innerHTML) + 10*explosive; // Sulfur
+    outp[3].innerHTML = parseInt(outp[3].innerHTML) + 10*explosive; // Frags
+    outpcontainer[0].firstElementChild.firstElementChild.innerHTML = -explosive*50;
+    outpcontainer[9].firstElementChild.firstElementChild.innerHTML = -explosive*3;
+    outpcontainer[1].firstElementChild.lastElementChild.innerHTML = -explosive*10;
+    outpcontainer[3].firstElementChild.firstElementChild.innerHTML = -explosive*10;
+
+
     const elements = [...outp].map((e)=>(parseInt(e.innerHTML))) // Converts element => inner html => number
-    if (elements[0] < 0) { // Sulfur => sulfure ore + charcoal
-        let material = -elements[0]*2; // calc sulf and charcoal needed respectively
-        // console.log(material)
-        // outp[0].innerHTML = 0; // Reset since we are editing other values to make up for gunpowder
-        // Makes the conversions
-        outp[7].innerHTML = material;
-        outp[1].innerHTML = elements[1] - material;
-        outpcontainer[1].firstElementChild.firstElementChild.innerHTML = material; // Sulf
-        outpcontainer[7].firstElementChild.firstElementChild.innerHTML = material; // Char
-        // outp[1].innerHTML = 0;
-        outp[2].innerHTML = elements[7] + (elements[1] - material);
-        outpcontainer[2].firstElementChild.firstElementChild.innerHTML = material;
+    // Sulfur => sulfure ore + charcoal
+    let material;
+    if (elements[0] < 0) {material = -elements[0]*2;} // calc sulf and charcoal needed respectively
+    else {material = 0;}
+    
+    // console.log(material)
+    // outp[0].innerHTML = 0; // Reset since we are editing other values to make up for gunpowder
+    // Makes the conversions
+    outp[7].innerHTML = elements[7] - material;
+    outp[1].innerHTML = elements[1] - material;
+    outpcontainer[1].firstElementChild.firstElementChild.innerHTML = material; // Sulf
+    outpcontainer[7].firstElementChild.firstElementChild.innerHTML = material; // Char
+    // outp[1].innerHTML = 0;
+    outp[2].innerHTML = elements[2] + (elements[1] - material);
+    outpcontainer[2].firstElementChild.firstElementChild.innerHTML = -(elements[2] + (elements[1] - material));
             
-    }
+    
 
 }
 
-function estimateRockets(resources, totalcost) {
+function estimateRockets(resource, totalcost) {
+    
     let rockets = -1; // Dont ask why its -1, it works and idk why
     while (true) {   
-        for (let obj in totalcost) {
-            if (resources[obj]) {
-                if (!((resources[obj] - totalcost[obj]) >= 0)) {
-                    console.log(rockets)
-                    totalcost["pipe"] -= 2; // Sets back a rocket
-                    totalcost["explosive"] -= 10; // Sets back a rocket
-                    totalcost["gunpowder"] -= 150; // Sets back a rocket
-                    return { "newcost": totalcost, 
-                        "a": rockets === -1 ? 0 : rockets };
+        for (let obj of [ "explosive", "pipe", "gunpowder" ]) {
+            if (resource[obj]) {
+                if (!((resource[obj] - totalcost[obj]) >= 0)) {
+                    console.log(rockets, totalcost, obj)
+                    return rockets === -1 ? 0 : rockets ;
                 } else {
                     if (rocket[obj]) {
                         totalcost[obj] += rocket[obj];
@@ -100,7 +99,7 @@ function estimateRockets(resources, totalcost) {
                 }
             }
             else {
-                return { "newcost": totalcost, "a": 0 };
+                return 0;
             }
             
         }
@@ -149,19 +148,27 @@ function getboom(autocompleterockets=false) {
             }
         }
     }
-    let newcost = totalcost;
-    let a;
+    let rockets;
     if (autoboom) {
-        ({ newcost, a } = estimateRockets(resources, totalcost));
-        rocket.elem.value = a;
+        rockets = estimateRockets(resources, { ...totalcost });
+        for (const item in rocket) {
+            if (typeof(rocket[item]) === "number") {
+                if (totalcost[item]) {
+                    totalcost[item] += rocket[item]*rockets;
+                } else {
+                    totalcost[item] = rocket[item]*rockets;
+                }
+            }
+        }
+        rocket.elem.value = rockets;
     } else {
         if (rocket.elem.value !== "0") {
             for (const item in rocket) {
                 if (typeof(rocket[item]) === "number") {
-                    if (newcost[item]) {
-                        newcost[item] += rocket[item]*parseInt(rocket.elem.value);
+                    if (totalcost[item]) {
+                        totalcost[item] += rocket[item]*parseInt(rocket.elem.value);
                     } else {
-                        newcost[item] = rocket[item]*parseInt(rocket.elem.value);
+                        totalcost[item] = rocket[item]*parseInt(rocket.elem.value);
                     }
                     
                 }
@@ -172,8 +179,8 @@ function getboom(autocompleterockets=false) {
     // if (a >= parseInt(rocket.elem.value)) {
     //     rocket.elem.value = a;
     // }
-    // console.log(newcost)
-    setOutput(resources, newcost);
+    // console.log(totalcost)
+    setOutput(resources, totalcost);
 }
 
 
